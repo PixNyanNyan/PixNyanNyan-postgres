@@ -5,7 +5,7 @@ RUN apt-get update && \
     add-apt-repository -y universe && \
     add-apt-repository -y ppa:groonga/ppa && \
     apt-get update && \
-    apt-get install -y -V postgresql-9.6-pgroonga gosu build-essential git
+    apt-get install -y -V postgresql-9.6-pgroonga gosu build-essential git postgresql-server-dev-9.6
 
 RUN locale-gen en_US.utf8 && update-locale en_US.utf8
 ENV PGDATA /var/lib/postgresql/data
@@ -15,8 +15,9 @@ VOLUME /var/lib/postgresql/data
 
 RUN mkdir /pg_similarity && \
     git clone https://github.com/eulerto/pg_similarity.git && \
-    cd /pg_similarity
-RUN make && make install
+    cd /pg_similarity && \
+    make && \
+    make install
 
 COPY docker-entrypoint.sh /
 
