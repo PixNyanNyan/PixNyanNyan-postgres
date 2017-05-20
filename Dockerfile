@@ -5,7 +5,7 @@ RUN apt-get update && \
     add-apt-repository -y universe && \
     add-apt-repository -y ppa:groonga/ppa && \
     apt-get update && \
-    apt-get install -y -V postgresql-9.6-pgroonga gosu build-essential
+    apt-get install -y -V postgresql-9.6-pgroonga gosu build-essential git
 
 RUN locale-gen en_US.utf8 && update-locale en_US.utf8
 ENV PGDATA /var/lib/postgresql/data
