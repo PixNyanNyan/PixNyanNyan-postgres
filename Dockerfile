@@ -10,12 +10,11 @@ RUN apt-get update && \
 RUN locale-gen en_US.utf8 && update-locale en_US.utf8
 ENV PGDATA /var/lib/postgresql/data
 ENV PATH /usr/lib/postgresql/9.6/bin:$PATH
-ENV USE_PGXS 1
 VOLUME /var/lib/postgresql/data
 
-RUN mkdir /pg_similarity && \
-    git clone https://github.com/eulerto/pg_similarity.git && \
-    cd /pg_similarity && \
+RUN mkdir /postgres-phash && \
+    git clone https://github.com/PixNyanNyan/postgres-phash-hamming.git /postgres-phash && \
+    cd /postgres-phash && \
     make && \
     make install
 
