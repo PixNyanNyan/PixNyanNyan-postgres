@@ -12,6 +12,12 @@ ENV PGDATA /var/lib/postgresql/data
 ENV PATH /usr/lib/postgresql/9.6/bin:$PATH
 VOLUME /var/lib/postgresql/data
 
+RUN mkdir /pg_similarity && \
+    git clone https://github.com/eulerto/pg_similarity.git && \
+    cd /pg_similarity && \
+    USE_PGXS=1 make && \
+    USE_PGXS=1 make install
+
 COPY docker-entrypoint.sh /
 
 RUN chmod +x /docker-entrypoint.sh && chown -R postgres:postgres /var/lib/postgresql/
