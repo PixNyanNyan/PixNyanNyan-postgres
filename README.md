@@ -1,5 +1,4 @@
 # PixNyanNyan-postgres
-----
 
 ## What's this?
 
